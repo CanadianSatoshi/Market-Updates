@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nelson Market Update Q1 2026 — Jericho Judson</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+
+  /* HEADER */
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f1117 100%); border-bottom: 3px solid #C8102E; padding: 40px 40px 32px; }
+  .header-inner { max-width: 960px; margin: 0 auto; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.2em; color: #C8102E; font-family: Arial, sans-serif; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
+  .header h1 { font-size: 38px; font-weight: 400; color: #f8fafc; line-height: 1.1; letter-spacing: -0.02em; font-family: Georgia, serif; }
+  .header h2 { font-size: 20px; font-weight: 400; margin-top: 6px; color: #94a3b8; letter-spacing: 0.05em; font-family: Arial, sans-serif; }
+  .date-box { background: rgba(200,16,46,0.12); border: 1px solid rgba(200,16,46,0.4); border-radius: 8px; padding: 12px 20px; text-align: right; }
+  .date-box .label { font-size: 11px; color: #94a3b8; font-family: Arial; letter-spacing: 0.1em; }
+  .date-box .date { font-size: 18px; color: #f8fafc; font-weight: 700; font-family: Arial; }
+  .date-box .source { font-size: 11px; color: #64748b; font-family: Arial; margin-top: 2px; }
+
+  /* STATS BAR */
+  .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 28px; background: rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+  .stat-item { padding: 16px 20px; }
+  .stat-item.highlight { background: rgba(200,16,46,0.08); }
+  .stat-label { font-size: 10px; font-family: Arial; letter-spacing: 0.15em; color: #64748b; text-transform: uppercase; margin-bottom: 6px; }
+  .stat-value { font-size: 26px; font-weight: 700; font-family: Arial; line-height: 1; }
+  .stat-value.red { color: #f87171; }
+  .stat-value.green { color: #4ade80; }
+  .stat-value.white { color: #f8fafc; }
+  .stat-sub { font-size: 11px; color: #64748b; font-family: Arial; margin-top: 4px; }
+
+  /* TABS */
+  .tabs { background: #161b27; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 40px; }
+  .tabs-inner { max-width: 960px; margin: 0 auto; display: flex; }
+  .tab-btn { background: none; border: none; cursor: pointer; padding: 14px 22px; font-family: Arial; font-size: 13px; font-weight: 600; color: #64748b; border-bottom: 2px solid transparent; transition: all 0.2s; letter-spacing: 0.05em; text-transform: uppercase; }
+  .tab-btn.active { color: #C8102E; border-bottom-color: #C8102E; }
+  .tab-btn:hover { color: #94a3b8; }
+
+  /* CONTENT */
+  .content { max-width: 960px; margin: 0 auto; padding: 32px 40px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* CARDS */
+  .card { background: #161b27; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); padding: 28px; margin-bottom: 24px; }
+  .card-eyebrow { font-size: 11px; font-family: Arial; color: #C8102E; letter-spacing: 0.15em; margin-bottom: 6px; text-transform: uppercase; font-weight: 700; }
+  .card-title { font-size: 20px; color: #f8fafc; font-family: Georgia; margin-bottom: 4px; }
+  .card-sub { font-size: 13px; color: #64748b; font-family: Arial; margin-bottom: 20px; }
+
+  /* BARS */
+  .bar-container { display: flex; align-items: flex-end; gap: 20px; height: 180px; margin-bottom: 16px; }
+  .bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .bar-value { font-size: 13px; font-family: Arial; font-weight: 700; }
+  .bar { width: 100%; border-radius: 4px 4px 0 0; position: relative; transition: opacity 0.3s; }
+  .bar-label { font-size: 11px; font-family: Arial; color: #64748b; text-align: center; }
+  .bar-sub { font-size: 11px; font-family: Arial; color: #94a3b8; }
+  .current-tag { position: absolute; top: -28px; left: 50%; transform: translateX(-50%); background: #C8102E; color: white; font-size: 9px; font-family: Arial; font-weight: 700; padding: 2px 6px; border-radius: 4px; white-space: nowrap; letter-spacing: 0.1em; }
+
+  /* CALLOUT */
+  .callout { border-radius: 8px; padding: 14px 18px; margin-top: 16px; }
+  .callout.red { background: rgba(200,16,46,0.08); border-left: 3px solid #C8102E; }
+  .callout.green { background: rgba(74,222,128,0.06); border-left: 3px solid #4ade80; }
+  .callout.amber { background: rgba(251,146,60,0.08); border-left: 3px solid #fb923c; }
+  .callout.navy { background: rgba(26,58,92,0.3); border-left: 3px solid #3b82f6; }
+  .callout-title { font-size: 14px; color: #f8fafc; font-family: Arial; font-weight: 700; margin-bottom: 6px; }
+  .callout p { font-size: 13px; font-family: Arial; color: #94a3b8; line-height: 1.6; }
+  .callout-title.green { color: #4ade80; }
+  .callout-title.amber { color: #fb923c; }
+  .callout-title.red { color: #f87171; }
+
+  /* METRICS GRID */
+  .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+  .metric-box { padding: 16px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+  .metric-icon { font-size: 18px; margin-bottom: 6px; }
+  .metric-value { font-size: 24px; font-weight: 700; font-family: Arial; }
+  .metric-label { font-size: 11px; font-family: Arial; color: #64748b; margin-top: 2px; }
+  .metric-note { font-size: 10px; font-family: Arial; color: #4ade80; margin-top: 2px; }
+
+  /* SUPPLY METER */
+  .meter-wrap { position: relative; height: 40px; background: linear-gradient(to right, #16a34a, #65a30d, #ca8a04, #ea580c, #dc2626); border-radius: 8px; margin: 20px 0 40px; }
+  .meter-marker { position: absolute; top: -8px; width: 3px; height: 56px; background: white; border-radius: 2px; left: 75%; transform: translateX(-50%); }
+  .meter-tag { position: absolute; top: -32px; left: 75%; transform: translateX(-50%); background: white; color: #0f1117; font-size: 11px; font-family: Arial; font-weight: 700; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+  .meter-labels { display: flex; justify-content: space-between; margin-top: 6px; }
+  .meter-labels span { font-size: 10px; font-family: Arial; color: #94a3b8; }
+
+  /* PRICE GRID */
+  .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .price-card { padding: 20px; border-radius: 10px; }
+  .price-card.current { background: rgba(200,16,46,0.08); border: 1px solid rgba(200,16,46,0.3); }
+  .price-card.past { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+  .price-card-label { font-size: 11px; font-family: Arial; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; }
+  .price-card.current .price-card-label { color: #C8102E; }
+  .price-card.past .price-card-label { color: #64748b; }
+  .price-values { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .price-val-label { font-size: 10px; color: #64748b; font-family: Arial; margin-bottom: 4px; }
+  .price-val { font-size: 24px; font-weight: 700; font-family: Arial; }
+
+  /* SELL-THROUGH */
+  .sell-row { padding: 16px 20px; border-radius: 10px; background: rgba(255,255,255,0.02); margin-bottom: 12px; }
+  .sell-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .sell-band { font-size: 15px; color: #f8fafc; font-family: Arial; font-weight: 600; }
+  .sell-detail { font-size: 12px; color: #64748b; font-family: Arial; margin-top: 2px; }
+  .sell-rate { font-size: 24px; font-weight: 700; font-family: Arial; text-align: right; }
+  .sell-status { font-size: 10px; font-family: Arial; font-weight: 700; letter-spacing: 0.1em; text-align: right; }
+  .sell-bar-bg { height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+  .sell-bar-fill { height: 100%; border-radius: 4px; }
+  .sell-note { font-size: 12px; color: #64748b; font-family: Arial; margin-top: 8px; font-style: italic; }
+
+  /* INVENTORY BARS */
+  .inv-row { display: flex; align-items: center; gap: 16px; padding: 10px 14px; border-radius: 8px; margin-bottom: 8px; }
+  .inv-band { width: 130px; font-size: 13px; font-family: Arial; color: #94a3b8; flex-shrink: 0; }
+  .inv-bar-wrap { flex: 1; height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
+  .inv-bar-fill { height: 100%; border-radius: 4px; }
+  .inv-count { width: 30px; text-align: right; font-size: 14px; font-weight: 700; font-family: Arial; }
+  .inv-note { font-size: 10px; font-family: Arial; color: #64748b; width: 170px; flex-shrink: 0; }
+
+  /* RATIO BARS */
+  .ratio-container { display: flex; align-items: flex-end; gap: 16px; height: 120px; }
+  .ratio-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+
+  /* FOOTER */
+  .footer { max-width: 960px; margin: 0 auto; padding: 0 40px 40px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+  .footer-name { font-size: 13px; font-family: Arial; font-weight: 700; color: #f8fafc; }
+  .footer-detail { font-size: 12px; font-family: Arial; color: #64748b; margin-top: 2px; }
+  .footer-disclaimer { font-size: 11px; font-family: Arial; color: #475569; max-width: 400px; text-align: right; }
+
+  @media (max-width: 700px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .price-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .header { padding: 24px 20px; }
+    .content { padding: 20px; }
+    .tabs { padding: 0 20px; }
+    .tab-btn { padding: 12px 14px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-top">
+      <div>
+        <div class="eyebrow">Jericho Judson · REALTOR® · Royal LePage Rosling Realty</div>
+        <h1>Nelson &amp; West Kootenay<br>Real Estate Market Update</h1>
+        <h2>Q1 2026 &nbsp;·&nbsp; January through March 28</h2>
+      </div>
+      <div class="date-box">
+        <div class="label">DATA THROUGH</div>
+        <div class="date">March 28, 2026</div>
+        <div class="source">Source: AOIR / Xposure MLS®</div>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-label">Q1 Sales</div>
+        <div class="stat-value red">28</div>
+        <div class="stat-sub">vs 35 in Q1 2025</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Inventory Supply</div>
+        <div class="stat-value red">9.0 mo</div>
+        <div class="stat-sub">Buyer's market</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Nelson Proper Median</div>
+        <div class="stat-value white">$652K</div>
+        <div class="stat-sub">SFD down 3% YOY</div>
+      </div>
+      <div class="stat-item highlight">
+        <div class="stat-label">Avg Days on Market</div>
+        <div class="stat-value green">81 days</div>
+        <div class="stat-sub">Faster than 2025</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+    <button class="tab-btn" onclick="showTab('prices')">Price Trends</button>
+    <button class="tab-btn" onclick="showTab('inventory')">Inventory</button>
+    <button class="tab-btn" onclick="showTab('sellthrough')">By Price Band</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- OVERVIEW -->
+  <div id="tab-overview" class="tab-panel active">
+
+    <div class="card">
+      <div class="card-eyebrow">Quarterly Sales Activity</div>
+      <div class="card-title">Q1 Sales Volume — 4 Year Comparison</div>
+      <div class="bar-container" style="margin-top:20px;">
+        <div class="bar-group">
+          <div class="bar-value" style="color:#94a3b8;">25</div>
+          <div class="bar" style="height:129px;background:#94a3b8;opacity:0.5;"></div>
+          <div class="bar-label">Q1 2023</div>
+          <div class="bar-sub">$16.3M</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-value" style="color:#94a3b8;">14</div>
+          <div class="bar" style="height:72px;background:#94a3b8;opacity:0.5;"></div>
+          <div class="bar-label">Q1 2024</div>
+          <div class="bar-sub">$9.3M</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-value" style="color:#94a3b8;">35</div>
+          <div class="bar" style="height:180px;background:#94a3b8;opacity:0.5;"></div>
+          <div class="bar-label">Q1 2025</div>
+          <div class="bar-sub">$24.3M</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-value" style="color:#C8102E;">28</div>
+          <div class="bar" style="height:144px;background:#C8102E;position:relative;">
+            <div class="current-tag">YOU ARE HERE</div>
+          </div>
+          <div class="bar-label">Q1 2026</div>
+          <div class="bar-sub">$15.9M</div>
+        </div>
+      </div>
+      <div class="callout red">
+        <div class="callout-title">Context: Q1 2025 was the anomaly, not Q1 2026.</div>
+        <p>This quarter tracks closely with Q1 2023 — a healthy, normal market. The 4-year average for Q1 volume is approximately $16M, which is exactly where we landed.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-eyebrow">Days on Market</div>
+      <div class="card-title">Average DOM — 5 Year Trend</div>
+      <div class="card-sub">Lower = homes selling faster</div>
+      <div class="bar-container">
+        <div class="bar-group">
+          <div class="bar-value" style="color:#94a3b8;">49</div>
+          <div class="bar" style="height:60px;background:rgba(148,163,184,0.3);"></div>
+          <div class="bar-label">2022</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-value" style="color:#94a3b8;">78</div>
+          <div class="bar" style="height:96px;background:rgba(148,163,184,0.3);"></div>
+          <div class="bar-label">2023</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-value" style="color:#94a3b8;">72</div>
+          <div class="bar" style="height:89px;background:rgba(148,163,184,0.3);"></div>
+          <div class="bar-label">2024</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-value" style="color:#94a3b8;">70</div>
+          <div class="bar" style="height:86px;background:rgba(148,163,184,0.3);"></div>
+          <div class="bar-label">2025</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar-value" style="color:#4ade80;">81</div>
+          <div class="bar" style="height:100px;background:#4ade80;"></div>
+          <div class="bar-label">2026 YTD</div>
+        </div>
+      </div>
+      <div class="callout green">
+        <div class="callout-title green">The DOM Paradox</div>
+        <p>Correctly priced homes are selling faster than last year. The 12 expired listings in Jan–Feb are overpriced homes dragging the market perception. Price right → sell in 81 days.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRICES -->
+  <div id="tab-prices" class="tab-panel">
+
+    <div class="card">
+      <div class="card-eyebrow">Why the Headline Number is Misleading</div>
+      <div class="card-title">Overall Median vs. Nelson SFD Median</div>
+      <div style="margin-top:20px;" class="price-grid">
+        <div class="price-card past">
+          <div class="price-card-label">Q1 2023</div>
+          <div class="price-values">
+            <div><div class="price-val-label">ALL TYPES</div><div class="price-val" style="color:#94a3b8;">$630K</div></div>
+            <div><div class="price-val-label">NELSON SFD</div><div class="price-val" style="color:#94a3b8;">$732K</div></div>
+          </div>
+        </div>
+        <div class="price-card past">
+          <div class="price-card-label">Q1 2024</div>
+          <div class="price-values">
+            <div><div class="price-val-label">ALL TYPES</div><div class="price-val" style="color:#94a3b8;">$688K</div></div>
+            <div><div class="price-val-label">NELSON SFD</div><div class="price-val" style="color:#94a3b8;">$629K</div></div>
+          </div>
+        </div>
+        <div class="price-card past">
+          <div class="price-card-label">Q1 2025</div>
+          <div class="price-values">
+            <div><div class="price-val-label">ALL TYPES</div><div class="price-val" style="color:#94a3b8;">$725K</div></div>
+            <div><div class="price-val-label">NELSON SFD</div><div class="price-val" style="color:#94a3b8;">$760K</div></div>
+          </div>
+        </div>
+        <div class="price-card current">
+          <div class="price-card-label">Q1 2026 ← CURRENT</div>
+          <div class="price-values">
+            <div><div class="price-val-label">ALL TYPES</div><div class="price-val" style="color:#f87171;">$538K</div></div>
+            <div><div class="price-val-label">NELSON SFD</div><div class="price-val" style="color:#4ade80;">$739K</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="callout red">
+        <div class="callout-title">Why the gap? Manufactured homes.</div>
+        <p>8 of 28 Q1 2026 sales were manufactured homes — the highest in 4 years. Strip those out and Nelson's SFD median sits at $739K, down only 3% from Q1 2025. The market has not crashed. The product mix changed.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-eyebrow">Negotiating Power</div>
+      <div class="card-title">Sale-to-Ask Ratio — 5 Year Trend</div>
+      <div class="ratio-container" style="margin-top:20px;">
+        <div class="ratio-group">
+          <div class="bar-value" style="color:#94a3b8;font-size:12px;">96.8%</div>
+          <div class="bar" style="height:68px;background:rgba(148,163,184,0.3);width:100%;border-radius:4px 4px 0 0;"></div>
+          <div class="bar-label">2022</div>
+        </div>
+        <div class="ratio-group">
+          <div class="bar-value" style="color:#94a3b8;font-size:12px;">95.7%</div>
+          <div class="bar" style="height:57px;background:rgba(148,163,184,0.3);width:100%;border-radius:4px 4px 0 0;"></div>
+          <div class="bar-label">2023</div>
+        </div>
+        <div class="ratio-group">
+          <div class="bar-value" style="color:#94a3b8;font-size:12px;">96.3%</div>
+          <div class="bar" style="height:63px;background:rgba(148,163,184,0.3);width:100%;border-radius:4px 4px 0 0;"></div>
+          <div class="bar-label">2024</div>
+        </div>
+        <div class="ratio-group">
+          <div class="bar-value" style="color:#94a3b8;font-size:12px;">96.2%</div>
+          <div class="bar" style="height:62px;background:rgba(148,163,184,0.3);width:100%;border-radius:4px 4px 0 0;"></div>
+          <div class="bar-label">2025</div>
+        </div>
+        <div class="ratio-group">
+          <div class="bar-value" style="color:#fb923c;font-size:12px;">93.5%</div>
+          <div class="bar" style="height:35px;background:#fb923c;width:100%;border-radius:4px 4px 0 0;"></div>
+          <div class="bar-label">2026 YTD</div>
+        </div>
+      </div>
+      <div class="callout amber">
+        <div class="callout-title amber">Buyer insight</div>
+        <p>The average buyer is negotiating ~$30,000 off asking price — the most room in 5 years. Sale-to-ask hit a 5-year low of 93.5%.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INVENTORY -->
+  <div id="tab-inventory" class="tab-panel">
+
+    <div class="card">
+      <div class="card-eyebrow">Market Conditions</div>
+      <div class="card-title">Supply &amp; Demand at a Glance</div>
+      <div style="margin-top:24px;">
+        <div class="meter-wrap">
+          <div class="meter-marker"></div>
+          <div class="meter-tag">9 MONTHS</div>
+        </div>
+        <div class="meter-labels">
+          <span>Seller's (&lt;3mo)</span>
+          <span>Balanced (4–6mo)</span>
+          <span>Buyer's (&gt;6mo)</span>
+        </div>
+      </div>
+      <div class="metrics-grid" style="margin-top:24px;">
+        <div class="metric-box">
+          <div class="metric-icon">🏠</div>
+          <div class="metric-value" style="color:#94a3b8;">72</div>
+          <div class="metric-label">Active Listings</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-icon">📋</div>
+          <div class="metric-value" style="color:#94a3b8;">10</div>
+          <div class="metric-label">Selling / Month</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-icon">📅</div>
+          <div class="metric-value" style="color:#C8102E;">9.0</div>
+          <div class="metric-label">Months of Supply</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-icon">⏳</div>
+          <div class="metric-value" style="color:#4ade80;">20</div>
+          <div class="metric-label">Pending Sales</div>
+          <div class="metric-note">Forward indicator ↑</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-icon">❌</div>
+          <div class="metric-value" style="color:#f87171;">12</div>
+          <div class="metric-label">Expired (Jan–Feb)</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-icon">📊</div>
+          <div class="metric-value" style="color:#fb923c;">44%</div>
+          <div class="metric-label">Sold / Listed %</div>
+        </div>
+      </div>
+      <div class="callout green" style="margin-top:16px;">
+        <div class="callout-title green">The 20 pending sales are the optimistic signal.</div>
+        <p>These deals close in April and May — Q2 numbers will reflect a more active market. Spring market acceleration is already underway.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-eyebrow">Inventory Breakdown</div>
+      <div class="card-title">Active Listings by Price Band</div>
+      <div style="margin-top:20px;">
+        <div class="inv-row" style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);">
+          <div class="inv-band">Under $400K</div>
+          <div class="inv-bar-wrap"><div class="inv-bar-fill" style="width:14%;background:#334155;"></div></div>
+          <div class="inv-count" style="color:#e2e8f0;">3</div>
+          <div class="inv-note" style="color:#4ade80;">Almost nothing available</div>
+        </div>
+        <div class="inv-row" style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);">
+          <div class="inv-band">$400K–$600K</div>
+          <div class="inv-bar-wrap"><div class="inv-bar-fill" style="width:63%;background:#334155;"></div></div>
+          <div class="inv-count" style="color:#e2e8f0;">13</div>
+          <div class="inv-note"></div>
+        </div>
+        <div class="inv-row" style="background:rgba(200,16,46,0.08);border:1px solid rgba(200,16,46,0.2);">
+          <div class="inv-band" style="color:#C8102E;font-weight:700;">$600K–$800K</div>
+          <div class="inv-bar-wrap"><div class="inv-bar-fill" style="width:98%;background:#C8102E;"></div></div>
+          <div class="inv-count" style="color:#C8102E;">20</div>
+          <div class="inv-note" style="color:#C8102E;">Most active band</div>
+        </div>
+        <div class="inv-row" style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);">
+          <div class="inv-band">$800K–$1M</div>
+          <div class="inv-bar-wrap"><div class="inv-bar-fill" style="width:68%;background:#334155;"></div></div>
+          <div class="inv-count" style="color:#e2e8f0;">14</div>
+          <div class="inv-note"></div>
+        </div>
+        <div class="inv-row" style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);">
+          <div class="inv-band">$1M–$1.5M</div>
+          <div class="inv-bar-wrap"><div class="inv-bar-fill" style="width:58%;background:#334155;"></div></div>
+          <div class="inv-count" style="color:#e2e8f0;">12</div>
+          <div class="inv-note"></div>
+        </div>
+        <div class="inv-row" style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);">
+          <div class="inv-band">Over $1.5M</div>
+          <div class="inv-bar-wrap"><div class="inv-bar-fill" style="width:48%;background:#334155;"></div></div>
+          <div class="inv-count" style="color:#e2e8f0;">10</div>
+          <div class="inv-note" style="color:#f87171;">Nothing sold Q1</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SELL-THROUGH -->
+  <div id="tab-sellthrough" class="tab-panel">
+
+    <div class="card">
+      <div class="card-eyebrow">The Most Important Chart in This Report</div>
+      <div class="card-title">Q1 Sales vs. Active Listings — By Price Band</div>
+      <div class="card-sub">The sell-through rate tells you exactly where buyer demand is concentrated</div>
+
+      <div style="margin-top:24px;">
+
+        <div class="sell-row" style="border:1px solid #16a34a33;">
+          <div class="sell-header">
+            <div><div class="sell-band">Under $400K</div><div class="sell-detail">7 sold · 3 active</div></div>
+            <div><div class="sell-rate" style="color:#16a34a;">233%</div><div class="sell-status" style="color:#16a34a;">HOT</div></div>
+          </div>
+          <div class="sell-bar-bg"><div class="sell-bar-fill" style="width:100%;background:#16a34a;"></div></div>
+          <div class="sell-note">Flying off shelves — demand far exceeds supply</div>
+        </div>
+
+        <div class="sell-row" style="border:1px solid #65a30d33;">
+          <div class="sell-header">
+            <div><div class="sell-band">$400K–$600K</div><div class="sell-detail">10 sold · 13 active</div></div>
+            <div><div class="sell-rate" style="color:#65a30d;">77%</div><div class="sell-status" style="color:#65a30d;">ACTIVE</div></div>
+          </div>
+          <div class="sell-bar-bg"><div class="sell-bar-fill" style="width:33%;background:#65a30d;"></div></div>
+          <div class="sell-note">Healthy and active — good homes finding buyers</div>
+        </div>
+
+        <div class="sell-row" style="border:1px solid #ca8a0433;">
+          <div class="sell-header">
+            <div><div class="sell-band">$600K–$800K</div><div class="sell-detail">6 sold · 20 active</div></div>
+            <div><div class="sell-rate" style="color:#ca8a04;">30%</div><div class="sell-status" style="color:#ca8a04;">SLOW</div></div>
+          </div>
+          <div class="sell-bar-bg"><div class="sell-bar-fill" style="width:13%;background:#ca8a04;"></div></div>
+          <div class="sell-note">Buyers have real leverage — 7 in 10 listings are sitting</div>
+        </div>
+
+        <div class="sell-row" style="border:1px solid #ea580c33;">
+          <div class="sell-header">
+            <div><div class="sell-band">$800K–$1M</div><div class="sell-detail">3 sold · 14 active</div></div>
+            <div><div class="sell-rate" style="color:#ea580c;">21%</div><div class="sell-status" style="color:#ea580c;">SOFT</div></div>
+          </div>
+          <div class="sell-bar-bg"><div class="sell-bar-fill" style="width:9%;background:#ea580c;"></div></div>
+          <div class="sell-note">Soft — competitive pricing essential</div>
+        </div>
+
+        <div class="sell-row" style="border:1px solid #dc262633;">
+          <div class="sell-header">
+            <div><div class="sell-band">$1M–$1.5M</div><div class="sell-detail">2 sold · 12 active</div></div>
+            <div><div class="sell-rate" style="color:#dc2626;">17%</div><div class="sell-status" style="color:#dc2626;">SOFT</div></div>
+          </div>
+          <div class="sell-bar-bg"><div class="sell-bar-fill" style="width:7%;background:#dc2626;"></div></div>
+          <div class="sell-note">Patient sellers — buyers hold the cards</div>
+        </div>
+
+        <div class="sell-row" style="border:1px solid #dc262633;">
+          <div class="sell-header">
+            <div><div class="sell-band">Over $1.5M</div><div class="sell-detail">0 sold · 10 active</div></div>
+            <div><div class="sell-rate" style="color:#dc2626;">0%</div><div class="sell-status" style="color:#dc2626;">STALLED</div></div>
+          </div>
+          <div class="sell-bar-bg"><div class="sell-bar-fill" style="width:0%;background:#dc2626;"></div></div>
+          <div class="sell-note">Nothing sold this quarter</div>
+        </div>
+
+      </div>
+
+      <div class="callout red" style="margin-top:24px;">
+        <div class="callout-title">What this means for buyers</div>
+        <p>Under $600K: move quickly — demand is high and supply is thin. Between $600K–$800K: you have options and real negotiating room. Over $1M: 22 listings, only 2 sold — you are in the driver's seat.</p>
+        <div class="callout-title" style="color:#f8fafc;margin-top:14px;">What this means for sellers</div>
+        <p>The $600K–$800K band has a 30% sell-through rate — 7 out of 10 homes are sitting. The ones that sold were priced correctly from day one. Price it right or watch it expire.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div class="footer-name">Jericho Judson, REALTOR®</div>
+    <div class="footer-detail">Royal LePage Rosling Realty · Nelson, BC · (250) 551-2828 · jerichorealestate.ca</div>
+  </div>
+  <div class="footer-disclaimer">Data sourced from MLS® via Association of Interior REALTORS®. Not intended to solicit properties already listed. March 28, 2026.</div>
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
