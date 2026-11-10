@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Start here | Jericho Real Estate</title>
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;}
+  body{background:#111111;color:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%;}
+  .wrap{min-height:100%;display:flex;flex-direction:column;justify-content:center;max-width:980px;margin:0 auto;padding:22px 20px;}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;min-height:22px;}
+  .eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#ff4d6a;font-weight:600;}
+  .back{background:none;border:0;padding:4px 0;color:#999999;font-size:13px;font-family:inherit;cursor:pointer;text-decoration:underline;}
+  .back:hover{color:#ffffff;}
+  h1{margin:0 0 6px;font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:34px;line-height:1.2;text-wrap:balance;}
+  h1 em{color:#ff4d6a;}
+  .sub{margin:0 0 20px;font-size:16px;line-height:1.55;color:#bbbbbb;max-width:640px;}
+  .opts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .opts.three{grid-template-columns:repeat(3,1fr);}
+  .opt{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;background:#1d1d1d;border:1px solid #333333;border-top:3px solid #EA0029;border-radius:10px;padding:18px 16px;color:#ffffff;font-family:inherit;font-size:16px;line-height:1.3;cursor:pointer;min-height:76px;transition:background .15s,border-color .15s;}
+  .opt:hover,.opt:focus-visible{background:#2a1418;border-color:#EA0029;outline:none;}
+  .opt span.arr{color:#ff4d6a;font-size:18px;flex:none;}
+  .bar{height:3px;background:#2a2a2a;border-radius:2px;margin-top:22px;overflow:hidden;}
+  .bar i{display:block;height:100%;background:#EA0029;width:25%;transition:width .25s;}
+  .res{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}
+  .res h1{font-size:28px;}
+  .res .sub{margin-bottom:14px;font-size:15px;}
+  .btn{display:inline-block;background:#EA0029;color:#ffffff;text-decoration:none;padding:13px 18px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;border-radius:4px;border:0;font-family:inherit;cursor:pointer;white-space:nowrap;}
+  .btn:hover{background:#c40022;}
+  .btn.ghost{background:transparent;border:1px solid #666666;}
+  .btn.ghost:hover{border-color:#ffffff;background:transparent;}
+  .second{display:inline-block;margin:0 0 0 14px;color:#ffffff;font-size:14px;text-decoration:underline;}
+  .ask{background:#1d1d1d;border-radius:12px;padding:18px;}
+  .ask label{display:block;font-family:Georgia,serif;font-size:19px;line-height:1.3;margin-bottom:4px;}
+  .ask p{margin:0 0 10px;font-size:13px;line-height:1.5;color:#aaaaaa;}
+  textarea{width:100%;height:62px;resize:none;background:#111111;color:#ffffff;border:1px solid #444444;border-radius:8px;padding:10px 12px;font-family:inherit;font-size:16px;line-height:1.4;margin-bottom:10px;}
+  textarea:focus{outline:none;border-color:#EA0029;}
+  .row{display:flex;gap:10px;flex-wrap:wrap;}
+  @media (max-width:760px){
+    .wrap{padding:16px 16px;}
+    h1{font-size:25px;}
+    .sub{font-size:14px;margin-bottom:14px;}
+    .opts,.opts.three{grid-template-columns:1fr;gap:8px;}
+    .opt{min-height:0;padding:13px 14px;font-size:15px;}
+    .bar{margin-top:14px;}
+    .res{grid-template-columns:1fr;gap:14px;}
+    .res h1{font-size:22px;}
+    .res .sub{font-size:14px;margin-bottom:10px;}
+    .ask{padding:14px;}
+    .ask label{font-size:17px;}
+    .ask p{display:none;}
+    textarea{height:52px;}
+    .btn{padding:12px 14px;font-size:11px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+(function () {
+  var SITE = 'https://www.jerichorealestate.ca';
+  var LINKS = {
+    buy:    [SITE + '/resources/buying-a-home', "Buyer's guide"],
+    sell:   [SITE + '/resources/selling-your-home', "Seller's guide"],
+    life:   [SITE + '/pages/living-in-nelson-bc', 'Life in Nelson'],
+    us:     [SITE + '/blog/Can+Americans+Buy+Property+in+Nelson+BC%3F+The+Complete+2026+Guide', 'Guide for US buyers'],
+    report: [SITE + '/blog/Nelson+BC+Real+Estate+Market+Update%3A+Summer+2026+%28Q3%29', 'Summer 2026 report'],
+    data:   ['https://canadiansatoshi.github.io/Market-Updates/', 'Live market data']
+  };
+  var PHONE = '+12505512828';
+  var EMAIL = 'reachjericho@gmail.com';
+
+  var WHEN = { q: 'How soon are you hoping to move?', key: 'Timing',
+    opts: ['Ready now', '3 to 6 months', '6 to 12 months', 'Just exploring'] };
+
+  var FLOW = {
+    start: { q: 'What brings you <em>here today?</em>', sub: 'Three quick taps and I will point you to the right place.', key: 'I am',
+      opts: [['Buying a home', 'buy'], ['Selling my home', 'sell'], ['Moving to Nelson', 'move'], ['Watching the market', 'market']] },
+    buy: [
+      { q: 'Where are you living right now?', key: 'Living in',
+        opts: ['In the Kootenays', 'Elsewhere in Canada', 'In the United States'] },
+      WHEN
+    ],
+    sell: [
+      { q: 'Where is the home?', key: 'Home is in',
+        opts: ['Nelson', 'North Shore', 'Rural, Salmo to Kaslo', 'Castlegar or Trail'] },
+      { q: 'When are you thinking of selling?', key: 'Timing',
+        opts: ['Within 3 months', '3 to 6 months', '6 to 12 months', 'Just curious on price'] }
+    ],
+    move: [
+      { q: 'Where are you moving from?', key: 'Moving from',
+        opts: ['Alberta', 'Elsewhere in BC', 'Elsewhere in Canada', 'The United States'] },
+      WHEN
+    ],
+    market: [
+      { q: 'What are you most curious about?', key: 'Curious about',
+        opts: ['What homes are selling for', 'Is it a good time to buy', 'Is it a good time to sell', 'What my home is worth'] }
+    ]
+  };
+
+  var app = document.getElementById('app');
+  var state;
+
+  function reset() { state = { path: null, step: 0, answers: [] }; render(); }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+  function result() {
+    var a = state.answers.map(function (x) { return x[1]; }).join(' | ');
+    var us = a.indexOf('United States') > -1;
+    var away = a.indexOf('Elsewhere') > -1 || a.indexOf('Alberta') > -1;
+    var p = state.path;
+    if (p === 'market' && a.indexOf('my home is worth') > -1) p = 'sell';
+    if (p === 'buy') return {
+      h: us ? 'Buying from the US? <em>Read this first.</em>' : 'Start with the <em>buyer\'s guide</em>',
+      s: us ? 'Ottawa proposed new rules for foreign buyers this fall. This guide lays out what you can and cannot buy.' :'Ten steps, what it really costs, and the local traps to know before you call about a listing.',
+      a: us ? LINKS.us : LINKS.buy, b: us ? LINKS.buy : (away ? LINKS.life : LINKS.report),
+      ask: 'Seen a home you like?', hint: 'Send me the address or what you are looking for. You will get a straight answer, not a pitch.',
+      ph: 'A street, a budget, a question...' };
+    if (p === 'sell') return {
+      h: 'Start with what your home is <em>really worth</em>',
+      s: 'How pricing works here, what buyers will ask for, and why overpriced homes sit.',
+      a: LINKS.sell, b: LINKS.report,
+      ask: 'Want a free pricing report?', hint: 'Tell me the street or neighbourhood. No obligation to list.',
+      ph: 'Your street or neighbourhood...' };
+    if (p === 'move') return {
+      h: 'See what life here <em>looks like</em> first',
+      s: 'Neighbourhoods, seasons, and what a normal week looks like on Kootenay Lake.',
+      a: LINKS.life, b: us ? LINKS.us : LINKS.buy,
+      ask: 'Not sure where to start?', hint: 'I made the same move from Calgary. Tell me what you are picturing and I will tell you where to look.',
+      ph: 'What are you picturing?' };
+    return {
+      h: 'Here are the <em>real numbers</em>',
+      s: 'Every Nelson sale from July to September, including the homes that did not sell.',
+      a: LINKS.report, b: LINKS.data,
+      ask: 'Want the numbers for your street?', hint: 'Ask me anything about the market. I will answer with data, not opinions.',
+      ph: 'Your question...' };
+  }
+
+  function message(note) {
+    var lines = ['Hi Jericho, I used the Start Here tool on your website.'];
+    state.answers.forEach(function (x) { lines.push(x[0] + ': ' + x[1]); });
+    if (note) lines.push('Note: ' + note);
+    return lines.join('\n');
+  }
+
+  function render() {
+    var total, q, html = '';
+    if (!state.path) { q = FLOW.start; total = 3; }
+    else {
+      var steps = FLOW[state.path];
+      total = steps.length + 1;
+      q = steps[state.step];
+    }
+
+    html += '<div class="top"><div class="eyebrow">Start here</div>' +
+      (state.answers.length ? '<button class="back" data-act="back">&larr; Back</button>' : '') + '</div>';
+
+    if (q) {
+      html += '<h1>' + q.q + '</h1>';
+      html += q.sub ? '<p class="sub">' + q.sub + '</p>' : '<p class="sub">&nbsp;</p>';
+      html += '<div class="opts' + (q.opts.length === 3 ? ' three' : '') + '">';
+      q.opts.forEach(function (o, i) {
+        var label = typeof o === 'string' ? o : o[0];
+        html += '<button class="opt" data-i="' + i + '"><span>' + esc(label) + '</span><span class="arr">&rarr;</span></button>';
+      });
+      html += '</div>';
+      var pct = Math.round((state.answers.length + 1) / (total + 1) * 100);
+      html += '<div class="bar"><i style="width:' + pct + '%"></i></div>';
+    } else {
+      var r = result();
+      html += '<div class="res"><div>' +
+        '<h1>' + r.h + '</h1><p class="sub">' + r.s + '</p>' +
+        '<a class="btn" target="_top" href="' + r.a[0] + '">' + esc(r.a[1]) + ' &rarr;</a>' +
+        '<a class="second" target="_top" href="' + r.b[0] + '">' + esc(r.b[1]) + '</a>' +
+        '</div><div class="ask">' +
+        '<label for="note">' + r.ask + '</label><p>' + r.hint + '</p>' +
+        '<textarea id="note" placeholder="' + esc(r.ph) + '"></textarea>' +
+        '<div class="row"><button class="btn" data-act="text">Text Jericho</button>' +
+        '<button class="btn ghost" data-act="email">Email instead</button></div>' +
+        '</div></div>';
+    }
+    app.innerHTML = html;
+  }
+
+  app.addEventListener('click', function (e) {
+    var t = e.target.closest('button');
+    if (!t) return;
+    var act = t.getAttribute('data-act');
+    if (act === 'back') {
+      var last = state.answers.pop();
+      if (!state.answers.length) state.path = null, state.step = 0;
+      else state.step -= 1;
+      render(); return;
+    }
+    if (act === 'text' || act === 'email') {
+      var note = document.getElementById('note').value.trim();
+      var body = encodeURIComponent(message(note));
+      var url = act === 'text'
+        ? 'sms:' + PHONE + '?&body=' + body
+        : 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Question from your website') + '&body=' + body;
+      try { window.top.location.href = url; } catch (err) { window.location.href = url; }
+      return;
+    }
+    var i = t.getAttribute('data-i');
+    if (i === null) return;
+    if (!state.path) {
+      var o = FLOW.start.opts[i];
+      state.path = o[1]; state.step = 0;
+      state.answers.push([FLOW.start.key, o[0]]);
+    } else {
+      var q = FLOW[state.path][state.step];
+      state.answers.push([q.key, q.opts[i]]);
+      state.step += 1;
+    }
+    render();
+  });
+
+  reset();
+})();
+</script>
+</body>
+</html>
